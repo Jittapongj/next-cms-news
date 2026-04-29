@@ -25,19 +25,19 @@ export const getNews = async (req, res) => {
 export const createNews = async (req, res) => {
   try {
     // ดึงข้อมูลข้อความจาก req.body
-    const { title, detail, category, status } = req.body;
+    const { title, content, category, status } = req.body;
     
     // ดึงชื่อไฟล์รูปภาพจาก req.file (ถ้ามีอัปโหลดมา)
-    const image_cover = req.file ? req.file.filename : null;
+    const image = req.file ? req.file.filename : null;
 
     // คำสั่ง SQL สำหรับเพิ่มข้อมูล 
     const sql = `
-      INSERT INTO news (title, detail, image_cover, category, status, created_at) 
+      INSERT INTO news (title, content, image, category, status, created_at) 
       VALUES (?, ?, ?, ?, ?, NOW())
     `;
     
     // ส่งข้อมูลเข้าไปแทนที่เครื่องหมาย ? ตามลำดับ
-    const [result] = await pool.query(sql, [title, detail, image_cover, category, status || 'active']);
+    const [result] = await pool.query(sql, [title, content, image, category, status || 'active']);
 
     res.status(201).json({
       success: true,
