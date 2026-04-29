@@ -1,0 +1,75 @@
+// Base Card: โครงสร้างหลักที่ใช้ร่วมกันทุก Card
+.card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  // ส่วนประกอบภายในที่เป็นมาตรฐาน
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  // Modifier: สำหรับ Card ข่าวโดยเฉพาะ
+  &-news {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      transform: translateY(-8px);
+      
+      .card-image img {
+        transform: scale(1.1);
+      }
+    }
+
+    .news-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 12px;
+      background: rgba(37, 99, 235, 0.9);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      z-index: 10;
+    }
+
+    .news-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f3f4f6;
+    }
+  }
+}

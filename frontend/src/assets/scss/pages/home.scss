@@ -1,0 +1,107 @@
+.home-container {
+  min-height: 100vh;
+  background-color: #f9fafb; // Gray-50
+  padding: 2rem 1rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+  }
+
+  .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .title-section {
+      border-left: 5px solid #2563eb; // Blue-600
+      padding-left: 1.25rem;
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin: 0;
+
+        span {
+          color: #2563eb;
+        }
+      }
+
+      p {
+        color: #6b7280;
+        margin-top: 0.25rem;
+      }
+    }
+
+    .btn-create {
+      background-color: #2563eb;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+
+      &:hover {
+        background-color: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+      }
+    }
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: white;
+    border-radius: 20px;
+    border: 2px dashed #e5e7eb;
+    
+    p {
+      color: #9ca3af;
+      font-size: 1.125rem;
+    }
+  }
+
+  // Loading Skeleton Animation
+  .skeleton {
+    background: #e5e7eb;
+    border-radius: 15px;
+    height: 300px;
+    width: 100%;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
