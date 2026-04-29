@@ -12,6 +12,7 @@ const app = express();
 app.use(cors()); // อนุญาตให้ Frontend ยิง API มาได้
 app.use(express.json()); // รับข้อมูลแบบ JSON
 app.use('/api/news', newsRoutes); // ใช้ Route สำหรับข่าว
+app.use('/uploads', express.static('uploads'));
 
 // API เส้นทางแรกสำหรับทดสอบระบบ
 app.get('/api/test-db', async (req, res) => {
