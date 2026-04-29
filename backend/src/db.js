@@ -1,0 +1,18 @@
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+
+// โหลดค่าจากไฟล์ .env
+dotenv.config();
+
+// สร้าง Connection Pool แทนการเปิด-ปิด Connection ทุกครั้งที่มีคนเข้าเว็บ
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+
+export default pool;
