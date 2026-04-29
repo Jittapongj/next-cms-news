@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './db.js'; // ดึงตัวเชื่อมต่อ Database มาใช้งาน
+import newsRoutes from './routes/newsRoutes.js';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const app = express();
 // Middleware พื้นฐาน
 app.use(cors()); // อนุญาตให้ Frontend ยิง API มาได้
 app.use(express.json()); // รับข้อมูลแบบ JSON
+app.use('/api/news', newsRoutes); // ใช้ Route สำหรับข่าว
 
 // API เส้นทางแรกสำหรับทดสอบระบบ
 app.get('/api/test-db', async (req, res) => {
