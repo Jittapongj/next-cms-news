@@ -24,25 +24,23 @@ export const getNews = async (req, res) => {
 // ฟังก์ชันสำหรับเพิ่มข่าวใหม่
 export const createNews = async (req, res) => {
   try {
-    // ดึงข้อมูลข้อความจาก req.body
     const { title, content, category, status } = req.body;
     
-    // ดึงชื่อไฟล์รูปภาพจาก req.file (ถ้ามีอัปโหลดมา)
-    const image = req.file ? req.file.filename : null;
+    // แก้ไขตรงนี้: ต่อ String 'uploads/images/' เข้าไปข้างหน้าชื่อไฟล์
+    // เพื่อให้ใน DB บันทึกว่า uploads/images/filename.png
+    const image = req.file ? `uploads/images/${req.file.filename}` : null;
 
-    // คำสั่ง SQL สำหรับเพิ่มข้อมูล 
     const sql = `
       INSERT INTO news (title, content, image, category, status, created_at) 
       VALUES (?, ?, ?, ?, ?, NOW())
     `;
     
-    // ส่งข้อมูลเข้าไปแทนที่เครื่องหมาย ? ตามลำดับ
     const [result] = await pool.query(sql, [title, content, image, category, status || 'active']);
 
     res.status(201).json({
       success: true,
       message: 'เพิ่มข่าวสารสำเร็จ!',
-      insertId: result.insertId // ส่ง ID ของข่าวที่เพิ่งสร้างกลับไป
+      insertId: result.insertId 
     });
   } catch (error) {
     console.error('Error creating news:', error);
